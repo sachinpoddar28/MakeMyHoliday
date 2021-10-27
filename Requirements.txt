@@ -1,0 +1,58 @@
+BookMy Holiday
+	1. Customer details:
+		Name [Required]
+		DOB [Required]
+		Address
+			1st line address [Required]
+			2nd line address [Not Required]
+			City [Required]
+			State [Required]
+			Country [Required]
+			Pin Code [Required]
+		Phone Number
+			i.  Mobile Number [Required]
+			ii. Alternate Mobile Number [Not Required]
+				
+A. Flight booking
+	1. Flight Details
+		id
+		flight code
+		origin
+		destination
+		price
+		seats available
+		plane:
+			type
+			total seats
+	
+B. Hotel Booking
+	1. Hotel Details
+		id
+		name
+		address
+			1st line address [Required]
+			2nd line address [Not Required]
+			Pin Code [Required]
+		City [Required]
+		State [Required]
+		Country [Required]
+		Contact Details
+		Rooms available
+			Standand 2 bed room
+			Standard 3 bed room
+			Standard 4 bed room
+			Delux 2 bed room
+			Delux 3 bed room
+			Delux 4 bed room
+		Type:
+			Customer Rating
+			Total Rooms
+			
+C. Car Booking
+	1. id
+	2. Car Dealer Name/Company
+	3. Source
+	4. Destination
+	5. Seater
+	6. Price
+	

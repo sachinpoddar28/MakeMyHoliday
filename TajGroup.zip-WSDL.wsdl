@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:schemas="HTTP://www.example.com/schemas" xmlns:wsdl="HTTP://www.example.com/wsdl" targetNamespace="HTTP://www.example.com/wsdl" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema xmlns:tns="HTTP://www.example.com/schemas" targetNamespace="HTTP://www.example.com/schemas" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="GET_Hotels_GET_InputMessage" type="schemas:GET_Hotels_GET_InputMessage" />
+      <xs:element name="GET_Hotels_GET_OutputMessage" type="schemas:GET_Hotels_GET_OutputMessage" />
+      <xs:element name="GET_Hotels_GET_400" type="schemas:GET_Hotels_GET_400" />
+      <xs:element name="GET_Hotels_GET_401" type="schemas:GET_Hotels_GET_401" />
+      <xs:element name="GET_Hotels_GET_404" type="schemas:GET_Hotels_GET_404" />
+      <xs:element name="GET_Hotels_GET_500" type="schemas:GET_Hotels_GET_500" />
+      <xs:element name="POST_Hotels_POST_InputMessage" type="schemas:POST_Hotels_POST_InputMessage" />
+      <xs:element name="POST_Hotels_POST_OutputMessage" type="schemas:POST_Hotels_POST_OutputMessage" />
+      <xs:element name="GET_HotelsById_GET_InputMessage" type="schemas:GET_HotelsById_GET_InputMessage" />
+      <xs:element name="GET_HotelsById_GET_OutputMessage" type="schemas:GET_HotelsById_GET_OutputMessage" />
+      <xs:element name="DELETE_HotelsById_DELETE_InputMessage" type="schemas:DELETE_HotelsById_DELETE_InputMessage" />
+      <xs:element name="DELETE_HotelsById_DELETE_OutputMessage" type="schemas:DELETE_HotelsById_DELETE_OutputMessage" />
+      <xs:element name="PUT_HotelsById_PUT_InputMessage" type="schemas:PUT_HotelsById_PUT_InputMessage" />
+      <xs:element name="PUT_HotelsById_PUT_OutputMessage" type="schemas:PUT_HotelsById_PUT_OutputMessage" />
+      <xs:element name="GET_HotelsBookById_GET_InputMessage" type="schemas:GET_HotelsBookById_GET_InputMessage" />
+      <xs:element name="GET_HotelsBookById_GET_OutputMessage" type="schemas:GET_HotelsBookById_GET_OutputMessage" />
+      <xs:complexType name="hotels">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID" type="xs:integer" />
+          <xs:element minOccurs="1" name="name" type="xs:string" />
+          <xs:element minOccurs="1" name="address" type="schemas:address" />
+          <xs:element minOccurs="1" name="city" type="xs:string" />
+          <xs:element minOccurs="1" name="state" type="xs:string" />
+          <xs:element minOccurs="1" name="country" type="xs:string" />
+          <xs:element minOccurs="1" name="contactNumber" type="xs:double" />
+          <xs:element minOccurs="1" name="roomsAvailable" type="schemas:roomsAvailable" />
+          <xs:element minOccurs="1" name="hotelType" type="schemas:hotelType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="bookHotel">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="ID" type="xs:integer" />
+          <xs:element minOccurs="1" name="name" type="xs:string" />
+          <xs:element minOccurs="1" name="roomsBooked" type="schemas:roomsBooked" />
+          <xs:element minOccurs="1" name="totalPrice" type="xs:integer" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="address">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="_1stLineAddress" type="xs:string" />
+          <xs:element minOccurs="0" name="_2ndLineAddress" type="xs:string" />
+          <xs:element minOccurs="1" name="pinCode" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="city">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="BHUJ" />
+          <xs:enumeration value="AHM" />
+          <xs:enumeration value="RAJKOT" />
+          <xs:enumeration value="DWK" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="dl2bed">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="rooms" type="xs:integer" />
+          <xs:element minOccurs="1" name="price" type="xs:integer" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="dl3bed">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="rooms" type="xs:integer" />
+          <xs:element minOccurs="1" name="price" type="xs:integer" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="dl4bed">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="rooms" type="xs:integer" />
+          <xs:element minOccurs="1" name="price" type="xs:integer" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Hotelsresponse">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="message" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Hotelsresponse400">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="StatusCode" type="xs:string" />
+          <xs:element minOccurs="1" name="ErrorMessage" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="hotelType">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="totalRooms" type="xs:integer" />
+          <xs:element minOccurs="1" name="customerRating" type="xs:integer" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="roomsAvailable">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="st2bed" type="schemas:st2bed" />
+          <xs:element minOccurs="1" name="st3bed" type="schemas:st3bed" />
+          <xs:element minOccurs="1" name="st4bed" type="schemas:st4bed" />
+          <xs:element minOccurs="1" name="dl2bed" type="schemas:dl2bed" />
+          <xs:element minOccurs="1" name="dl3bed" type="schemas:dl3bed" />
+          <xs:element minOccurs="1" name="dl4bed" type="schemas:dl4bed" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="roomsBooked">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="st2bed" type="xs:integer" />
+          <xs:element minOccurs="0" name="st3bed" type="xs:integer" />
+          <xs:element minOccurs="0" name="st4bed" type="xs:integer" />
+          <xs:element minOccurs="0" name="dl2bed" type="xs:integer" />
+          <xs:element minOccurs="0" name="dl3bed" type="xs:integer" />
+          <xs:element minOccurs="0" name="dl4bed" type="xs:integer" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="st2bed">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="rooms" type="xs:integer" />
+          <xs:element minOccurs="1" name="price" type="xs:integer" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="st3bed">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="rooms" type="xs:integer" />
+          <xs:element minOccurs="1" name="price" type="xs:integer" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="st4bed">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="rooms" type="xs:integer" />
+          <xs:element minOccurs="1" name="price" type="xs:integer" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_Hotels_GET_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="city" type="schemas:city" />
+          <xs:element minOccurs="1" name="client_id" type="xs:string" />
+          <xs:element minOccurs="1" name="client_secret" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_Hotels_GET_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="response200" type="schemas:hotels" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_Hotels_GET_400">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response400" type="schemas:Hotelsresponse400" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_Hotels_GET_401">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response401" type="schemas:Hotelsresponse400" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_Hotels_GET_404">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response404" type="schemas:Hotelsresponse400" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_Hotels_GET_500">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response500" type="schemas:Hotelsresponse400" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="POST_Hotels_POST_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="body" type="schemas:hotels" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="POST_Hotels_POST_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response201" type="schemas:Hotelsresponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_HotelsById_GET_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="id" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_HotelsById_GET_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response200" type="schemas:hotels" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DELETE_HotelsById_DELETE_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="id" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DELETE_HotelsById_DELETE_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response200" type="schemas:Hotelsresponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PUT_HotelsById_PUT_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="id" type="xs:string" />
+          <xs:element minOccurs="1" name="body" type="schemas:hotels" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PUT_HotelsById_PUT_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response200" type="schemas:Hotelsresponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_HotelsBookById_GET_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="id" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_HotelsBookById_GET_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response200" type="schemas:bookHotel" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="GET_Hotels_GET_InputMessage">
+    <part name="GET_Hotels_GET_InputMessage" element="schemas:GET_Hotels_GET_InputMessage" />
+  </message>
+  <message name="GET_Hotels_GET_OutputMessage">
+    <part name="GET_Hotels_GET_OutputMessage" element="schemas:GET_Hotels_GET_OutputMessage" />
+  </message>
+  <message name="GET_Hotels_GET_400">
+    <part name="GET_Hotels_GET_400" element="schemas:GET_Hotels_GET_400" />
+  </message>
+  <message name="GET_Hotels_GET_401">
+    <part name="GET_Hotels_GET_401" element="schemas:GET_Hotels_GET_401" />
+  </message>
+  <message name="GET_Hotels_GET_404">
+    <part name="GET_Hotels_GET_404" element="schemas:GET_Hotels_GET_404" />
+  </message>
+  <message name="GET_Hotels_GET_500">
+    <part name="GET_Hotels_GET_500" element="schemas:GET_Hotels_GET_500" />
+  </message>
+  <message name="POST_Hotels_POST_InputMessage">
+    <part name="POST_Hotels_POST_InputMessage" element="schemas:POST_Hotels_POST_InputMessage" />
+  </message>
+  <message name="POST_Hotels_POST_OutputMessage">
+    <part name="POST_Hotels_POST_OutputMessage" element="schemas:POST_Hotels_POST_OutputMessage" />
+  </message>
+  <message name="GET_HotelsById_GET_InputMessage">
+    <part name="GET_HotelsById_GET_InputMessage" element="schemas:GET_HotelsById_GET_InputMessage" />
+  </message>
+  <message name="GET_HotelsById_GET_OutputMessage">
+    <part name="GET_HotelsById_GET_OutputMessage" element="schemas:GET_HotelsById_GET_OutputMessage" />
+  </message>
+  <message name="DELETE_HotelsById_DELETE_InputMessage">
+    <part name="DELETE_HotelsById_DELETE_InputMessage" element="schemas:DELETE_HotelsById_DELETE_InputMessage" />
+  </message>
+  <message name="DELETE_HotelsById_DELETE_OutputMessage">
+    <part name="DELETE_HotelsById_DELETE_OutputMessage" element="schemas:DELETE_HotelsById_DELETE_OutputMessage" />
+  </message>
+  <message name="PUT_HotelsById_PUT_InputMessage">
+    <part name="PUT_HotelsById_PUT_InputMessage" element="schemas:PUT_HotelsById_PUT_InputMessage" />
+  </message>
+  <message name="PUT_HotelsById_PUT_OutputMessage">
+    <part name="PUT_HotelsById_PUT_OutputMessage" element="schemas:PUT_HotelsById_PUT_OutputMessage" />
+  </message>
+  <message name="GET_HotelsBookById_GET_InputMessage">
+    <part name="GET_HotelsBookById_GET_InputMessage" element="schemas:GET_HotelsBookById_GET_InputMessage" />
+  </message>
+  <message name="GET_HotelsBookById_GET_OutputMessage">
+    <part name="GET_HotelsBookById_GET_OutputMessage" element="schemas:GET_HotelsBookById_GET_OutputMessage" />
+  </message>
+  <portType name="TajGroup_PortType">
+    <operation name="GET_Hotels_GET">
+      <documentation>This is used to get the hotel details between the 4 destinations supported</documentation>
+      <input message="wsdl:GET_Hotels_GET_InputMessage" />
+      <output message="wsdl:GET_Hotels_GET_OutputMessage">
+        <documentation />
+      </output>
+      <fault name="GET_Hotels_GET_400" message="wsdl:GET_Hotels_GET_400">
+        <documentation />
+      </fault>
+      <fault name="GET_Hotels_GET_401" message="wsdl:GET_Hotels_GET_401">
+        <documentation />
+      </fault>
+      <fault name="GET_Hotels_GET_404" message="wsdl:GET_Hotels_GET_404">
+        <documentation />
+      </fault>
+      <fault name="GET_Hotels_GET_500" message="wsdl:GET_Hotels_GET_500">
+        <documentation />
+      </fault>
+    </operation>
+    <operation name="POST_Hotels_POST">
+      <documentation>This is used to post the hotel details for  any of the 4 destination supported.</documentation>
+      <input message="wsdl:POST_Hotels_POST_InputMessage" />
+      <output message="wsdl:POST_Hotels_POST_OutputMessage">
+        <documentation />
+      </output>
+    </operation>
+    <operation name="GET_HotelsById_GET">
+      <documentation>This is used to get the hotel details for a particular id.</documentation>
+      <input message="wsdl:GET_HotelsById_GET_InputMessage" />
+      <output message="wsdl:GET_HotelsById_GET_OutputMessage">
+        <documentation />
+      </output>
+    </operation>
+    <operation name="DELETE_HotelsById_DELETE">
+      <documentation>This is used to delete the hotel details for a particular id.</documentation>
+      <input message="wsdl:DELETE_HotelsById_DELETE_InputMessage" />
+      <output message="wsdl:DELETE_HotelsById_DELETE_OutputMessage">
+        <documentation />
+      </output>
+    </operation>
+    <operation name="PUT_HotelsById_PUT">
+      <documentation>This is used to update the hotel details for a particular id.</documentation>
+      <input message="wsdl:PUT_HotelsById_PUT_InputMessage" />
+      <output message="wsdl:PUT_HotelsById_PUT_OutputMessage">
+        <documentation />
+      </output>
+    </operation>
+    <operation name="GET_HotelsBookById_GET">
+      <documentation>This is used to book the hotel providing the id.</documentation>
+      <input message="wsdl:GET_HotelsBookById_GET_InputMessage" />
+      <output message="wsdl:GET_HotelsBookById_GET_OutputMessage">
+        <documentation />
+      </output>
+    </operation>
+  </portType>
+  <binding name="TajGroup_Binding" type="wsdl:TajGroup_PortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="GET_Hotels_GET">
+      <soap:operation soapAction="GET_Hotels_GET" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+      <fault name="GET_Hotels_GET_400">
+        <soap:fault use="literal" name="GET_Hotels_GET_400" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+      <fault name="GET_Hotels_GET_401">
+        <soap:fault use="literal" name="GET_Hotels_GET_401" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+      <fault name="GET_Hotels_GET_404">
+        <soap:fault use="literal" name="GET_Hotels_GET_404" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+      <fault name="GET_Hotels_GET_500">
+        <soap:fault use="literal" name="GET_Hotels_GET_500" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+    </operation>
+    <operation name="POST_Hotels_POST">
+      <soap:operation soapAction="POST_Hotels_POST" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GET_HotelsById_GET">
+      <soap:operation soapAction="GET_HotelsById_GET" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="DELETE_HotelsById_DELETE">
+      <soap:operation soapAction="DELETE_HotelsById_DELETE" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PUT_HotelsById_PUT">
+      <soap:operation soapAction="PUT_HotelsById_PUT" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GET_HotelsBookById_GET">
+      <soap:operation soapAction="GET_HotelsBookById_GET" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="TajGroup">
+    <documentation />
+    <port name="default_Port" binding="wsdl:TajGroup_Binding">
+      <soap:address location="HTTP://www.example.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>

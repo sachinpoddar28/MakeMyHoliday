@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:schemas="HTTP://www.example.com/schemas" xmlns:wsdl="HTTP://www.example.com/wsdl" targetNamespace="HTTP://www.example.com/wsdl" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema xmlns:tns="HTTP://www.example.com/schemas" targetNamespace="HTTP://www.example.com/schemas" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="GET_Flights_GET_InputMessage" type="schemas:GET_Flights_GET_InputMessage" />
+      <xs:element name="GET_Flights_GET_OutputMessage" type="schemas:GET_Flights_GET_OutputMessage" />
+      <xs:element name="GET_Flights_GET_400" type="schemas:GET_Flights_GET_400" />
+      <xs:element name="GET_Flights_GET_401" type="schemas:GET_Flights_GET_401" />
+      <xs:element name="GET_Flights_GET_404" type="schemas:GET_Flights_GET_404" />
+      <xs:element name="GET_Flights_GET_500" type="schemas:GET_Flights_GET_500" />
+      <xs:element name="POST_Flights_POST_InputMessage" type="schemas:POST_Flights_POST_InputMessage" />
+      <xs:element name="POST_Flights_POST_OutputMessage" type="schemas:POST_Flights_POST_OutputMessage" />
+      <xs:element name="GET_FlightsById_GET_InputMessage" type="schemas:GET_FlightsById_GET_InputMessage" />
+      <xs:element name="GET_FlightsById_GET_OutputMessage" type="schemas:GET_FlightsById_GET_OutputMessage" />
+      <xs:element name="DELETE_FlightsById_DELETE_InputMessage" type="schemas:DELETE_FlightsById_DELETE_InputMessage" />
+      <xs:element name="DELETE_FlightsById_DELETE_OutputMessage" type="schemas:DELETE_FlightsById_DELETE_OutputMessage" />
+      <xs:element name="PUT_FlightsById_PUT_InputMessage" type="schemas:PUT_FlightsById_PUT_InputMessage" />
+      <xs:element name="PUT_FlightsById_PUT_OutputMessage" type="schemas:PUT_FlightsById_PUT_OutputMessage" />
+      <xs:element name="GET_FlightsBookById_GET_InputMessage" type="schemas:GET_FlightsBookById_GET_InputMessage" />
+      <xs:element name="GET_FlightsBookById_GET_OutputMessage" type="schemas:GET_FlightsBookById_GET_OutputMessage" />
+      <xs:complexType name="flights">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID" type="xs:integer" />
+          <xs:element minOccurs="1" name="code" type="xs:string" />
+          <xs:element minOccurs="1" name="price" type="xs:double" />
+          <xs:element minOccurs="1" name="departureDate" type="xs:string" />
+          <xs:element minOccurs="1" name="origin" type="xs:string" />
+          <xs:element minOccurs="1" name="destination" type="xs:string" />
+          <xs:element minOccurs="1" name="emptySeats" type="xs:integer" />
+          <xs:element minOccurs="0" name="plane" type="schemas:plane" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="flight">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID" type="xs:integer" />
+          <xs:element minOccurs="1" name="airline" type="xs:string" />
+          <xs:element minOccurs="1" name="flightCode" type="xs:string" />
+          <xs:element minOccurs="1" name="fromAirportCode" type="xs:string" />
+          <xs:element minOccurs="1" name="toAirportCode" type="xs:string" />
+          <xs:element minOccurs="1" name="departureDate" type="xs:string" />
+          <xs:element minOccurs="1" name="emptySeats" type="xs:integer" />
+          <xs:element minOccurs="0" name="totalSeats" type="xs:integer" />
+          <xs:element minOccurs="1" name="price" type="xs:double" />
+          <xs:element minOccurs="0" name="planeType" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="dest">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="CHE" />
+          <xs:enumeration value="KOL" />
+          <xs:enumeration value="MUM" />
+          <xs:enumeration value="DEL" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="FlightsBookresponse">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="message" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Flightsresponse">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="message" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Flightsresponse400">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="StatusCode" type="xs:string" />
+          <xs:element minOccurs="1" name="ErrorMessage" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="orig">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="CHE" />
+          <xs:enumeration value="KOL" />
+          <xs:enumeration value="MUM" />
+          <xs:enumeration value="DEL" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="plane">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="type" type="xs:string" />
+          <xs:element minOccurs="1" name="totalSeats" type="xs:integer" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_Flights_GET_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="dest" type="schemas:dest" />
+          <xs:element minOccurs="1" name="orig" type="schemas:orig" />
+          <xs:element minOccurs="1" name="client_id" type="xs:string" />
+          <xs:element minOccurs="1" name="client_secret" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_Flights_GET_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="response200" type="schemas:flights" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_Flights_GET_400">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response400" type="schemas:Flightsresponse400" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_Flights_GET_401">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response401" type="schemas:Flightsresponse400" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_Flights_GET_404">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response404" type="schemas:Flightsresponse400" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_Flights_GET_500">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response500" type="schemas:Flightsresponse400" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="POST_Flights_POST_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="body" type="schemas:flight" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="POST_Flights_POST_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response201" type="schemas:Flightsresponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_FlightsById_GET_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="id" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_FlightsById_GET_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response200" type="schemas:flight" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DELETE_FlightsById_DELETE_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="id" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DELETE_FlightsById_DELETE_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response200" type="schemas:Flightsresponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PUT_FlightsById_PUT_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="id" type="xs:string" />
+          <xs:element minOccurs="1" name="body" type="schemas:flight" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PUT_FlightsById_PUT_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response200" type="schemas:Flightsresponse" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_FlightsBookById_GET_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="id" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_FlightsBookById_GET_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response200" type="schemas:FlightsBookresponse" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="GET_Flights_GET_InputMessage">
+    <part name="GET_Flights_GET_InputMessage" element="schemas:GET_Flights_GET_InputMessage" />
+  </message>
+  <message name="GET_Flights_GET_OutputMessage">
+    <part name="GET_Flights_GET_OutputMessage" element="schemas:GET_Flights_GET_OutputMessage" />
+  </message>
+  <message name="GET_Flights_GET_400">
+    <part name="GET_Flights_GET_400" element="schemas:GET_Flights_GET_400" />
+  </message>
+  <message name="GET_Flights_GET_401">
+    <part name="GET_Flights_GET_401" element="schemas:GET_Flights_GET_401" />
+  </message>
+  <message name="GET_Flights_GET_404">
+    <part name="GET_Flights_GET_404" element="schemas:GET_Flights_GET_404" />
+  </message>
+  <message name="GET_Flights_GET_500">
+    <part name="GET_Flights_GET_500" element="schemas:GET_Flights_GET_500" />
+  </message>
+  <message name="POST_Flights_POST_InputMessage">
+    <part name="POST_Flights_POST_InputMessage" element="schemas:POST_Flights_POST_InputMessage" />
+  </message>
+  <message name="POST_Flights_POST_OutputMessage">
+    <part name="POST_Flights_POST_OutputMessage" element="schemas:POST_Flights_POST_OutputMessage" />
+  </message>
+  <message name="GET_FlightsById_GET_InputMessage">
+    <part name="GET_FlightsById_GET_InputMessage" element="schemas:GET_FlightsById_GET_InputMessage" />
+  </message>
+  <message name="GET_FlightsById_GET_OutputMessage">
+    <part name="GET_FlightsById_GET_OutputMessage" element="schemas:GET_FlightsById_GET_OutputMessage" />
+  </message>
+  <message name="DELETE_FlightsById_DELETE_InputMessage">
+    <part name="DELETE_FlightsById_DELETE_InputMessage" element="schemas:DELETE_FlightsById_DELETE_InputMessage" />
+  </message>
+  <message name="DELETE_FlightsById_DELETE_OutputMessage">
+    <part name="DELETE_FlightsById_DELETE_OutputMessage" element="schemas:DELETE_FlightsById_DELETE_OutputMessage" />
+  </message>
+  <message name="PUT_FlightsById_PUT_InputMessage">
+    <part name="PUT_FlightsById_PUT_InputMessage" element="schemas:PUT_FlightsById_PUT_InputMessage" />
+  </message>
+  <message name="PUT_FlightsById_PUT_OutputMessage">
+    <part name="PUT_FlightsById_PUT_OutputMessage" element="schemas:PUT_FlightsById_PUT_OutputMessage" />
+  </message>
+  <message name="GET_FlightsBookById_GET_InputMessage">
+    <part name="GET_FlightsBookById_GET_InputMessage" element="schemas:GET_FlightsBookById_GET_InputMessage" />
+  </message>
+  <message name="GET_FlightsBookById_GET_OutputMessage">
+    <part name="GET_FlightsBookById_GET_OutputMessage" element="schemas:GET_FlightsBookById_GET_OutputMessage" />
+  </message>
+  <portType name="INDIGO_x0020_Flight_x0020_API_PortType">
+    <operation name="GET_Flights_GET">
+      <documentation>This is used to get the flight details between the 4 destinations supported</documentation>
+      <input message="wsdl:GET_Flights_GET_InputMessage" />
+      <output message="wsdl:GET_Flights_GET_OutputMessage">
+        <documentation />
+      </output>
+      <fault name="GET_Flights_GET_400" message="wsdl:GET_Flights_GET_400">
+        <documentation />
+      </fault>
+      <fault name="GET_Flights_GET_401" message="wsdl:GET_Flights_GET_401">
+        <documentation />
+      </fault>
+      <fault name="GET_Flights_GET_404" message="wsdl:GET_Flights_GET_404">
+        <documentation />
+      </fault>
+      <fault name="GET_Flights_GET_500" message="wsdl:GET_Flights_GET_500">
+        <documentation />
+      </fault>
+    </operation>
+    <operation name="POST_Flights_POST">
+      <documentation>This is used to post the flight details for  any of the 4 destination supported.</documentation>
+      <input message="wsdl:POST_Flights_POST_InputMessage" />
+      <output message="wsdl:POST_Flights_POST_OutputMessage">
+        <documentation />
+      </output>
+    </operation>
+    <operation name="GET_FlightsById_GET">
+      <documentation>This is used to get the flight details for a particular flight.</documentation>
+      <input message="wsdl:GET_FlightsById_GET_InputMessage" />
+      <output message="wsdl:GET_FlightsById_GET_OutputMessage">
+        <documentation />
+      </output>
+    </operation>
+    <operation name="DELETE_FlightsById_DELETE">
+      <documentation>This is used to delete the flight details for a particular flight.</documentation>
+      <input message="wsdl:DELETE_FlightsById_DELETE_InputMessage" />
+      <output message="wsdl:DELETE_FlightsById_DELETE_OutputMessage">
+        <documentation />
+      </output>
+    </operation>
+    <operation name="PUT_FlightsById_PUT">
+      <documentation>This is used to update the flight details for a particular flight.</documentation>
+      <input message="wsdl:PUT_FlightsById_PUT_InputMessage" />
+      <output message="wsdl:PUT_FlightsById_PUT_OutputMessage">
+        <documentation />
+      </output>
+    </operation>
+    <operation name="GET_FlightsBookById_GET">
+      <documentation />
+      <input message="wsdl:GET_FlightsBookById_GET_InputMessage" />
+      <output message="wsdl:GET_FlightsBookById_GET_OutputMessage">
+        <documentation />
+      </output>
+    </operation>
+  </portType>
+  <binding name="INDIGO_x0020_Flight_x0020_API_Binding" type="wsdl:INDIGO_x0020_Flight_x0020_API_PortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="GET_Flights_GET">
+      <soap:operation soapAction="GET_Flights_GET" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+      <fault name="GET_Flights_GET_400">
+        <soap:fault use="literal" name="GET_Flights_GET_400" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+      <fault name="GET_Flights_GET_401">
+        <soap:fault use="literal" name="GET_Flights_GET_401" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+      <fault name="GET_Flights_GET_404">
+        <soap:fault use="literal" name="GET_Flights_GET_404" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+      <fault name="GET_Flights_GET_500">
+        <soap:fault use="literal" name="GET_Flights_GET_500" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+    </operation>
+    <operation name="POST_Flights_POST">
+      <soap:operation soapAction="POST_Flights_POST" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GET_FlightsById_GET">
+      <soap:operation soapAction="GET_FlightsById_GET" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="DELETE_FlightsById_DELETE">
+      <soap:operation soapAction="DELETE_FlightsById_DELETE" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PUT_FlightsById_PUT">
+      <soap:operation soapAction="PUT_FlightsById_PUT" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GET_FlightsBookById_GET">
+      <soap:operation soapAction="GET_FlightsBookById_GET" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="INDIGO_x0020_Flight_x0020_API">
+    <documentation />
+    <port name="default_Port" binding="wsdl:INDIGO_x0020_Flight_x0020_API_Binding">
+      <soap:address location="HTTP://www.example.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>
